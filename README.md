@@ -223,7 +223,8 @@ You can upload a SBOM manually from the Components tab of the project.
 
 ![Upload SBOM](./docs/dt-upload-sbom.png)
 
-> [!TIP] If you get validation errors when uploading an SBOM, try to disable
+> [!TIP]
+> If you get validation errors when uploading an SBOM, try to disable
 > validation under Administration -> BOM Formats -> BOM Validation.
 
 Dependency-Track unfortunately only support CycloneDX format, not the SPDX in
@@ -236,8 +237,10 @@ docker buildx imagetools inspect <image-url> --format "{{ json (index .SBOM \"li
 docker run -it --volume .:/root cyclonedx/cyclonedx-cli convert --input-file /root/sbom.spdx.json --output-file /root/sbom.cyclonedx.json
 ```
 
-Upload the SBOM to Dependency-Track.
-Go to "Audit vulnerabilities" tab and click "Reanalyse".
+1. Upload the SBOM to Dependency-Track.
+2. [Create a GitHub classic personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)
+3. Go to Administration -> Vulnerability Sources -> GitHub Advisories, add your PAT.
+4. Go to "Audit vulnerabilities" tab and click "Reanalyse".
 
 Dependency-Track has schedulers for various tasks.
 Some take 24 hours to trigger.
@@ -245,8 +248,8 @@ You can change the schedulers by going to Administration -> Task scheduler.
 
 Restarting the `dependency-track-apiserver-1` container also seems to trigger the scheduled tasks.
 
-> [!IMPORTANT] In real world, one would upload SBOM for new releases from
-> CI/CD.
+> [!IMPORTANT]
+> In real world, one would upload SBOM for new releases from CI/CD.
 > There is a both a [REST API](https://docs.dependencytrack.org/usage/cicd/)
 > and [GitHub
 > Action](https://github.com/marketplace/actions/upload-bom-to-dependency-track)

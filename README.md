@@ -155,13 +155,13 @@ docker scout sbom --format spdx <image-url>
 You can verify the attestation with [GH CLI](https://cli.github.com/).
 
 ```sh
-gh attestation verify --owner <user> oci://ghcr.io/<user>/<repo>@sha256:<hash>
+gh attestation verify --owner <user> oci://ghcr.io/<user>/<repo>@sha256:<digest-hash>
 ```
 
 ## Scan image
 
 You can scan the image for vulnerabilities with [Trivy](https://trivy.dev/).
-I prefer to run Trivy trough Docker, given the [recent
+I prefer to run Trivy through Docker, given the [recent
 breach](https://www.bleepingcomputer.com/news/security/trivy-vulnerability-scanner-breach-pushed-infostealer-via-github-actions/).
 
 ```sh
